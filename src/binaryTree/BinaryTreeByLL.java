@@ -98,6 +98,7 @@ public class BinaryTreeByLL {
 		while(!queue.isEmpty()) {
 			BinaryNode presentNode = queue.remove();
 			System.out.print(presentNode.getValue());
+			
 			if(presentNode.getLeft()!=null) {
 				queue.add(presentNode.getLeft());
 			}
