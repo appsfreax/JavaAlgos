@@ -1,10 +1,10 @@
-package BinaryTree;
+package binaryTree;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-import Model.BinaryNode;
+import models.BinaryNode;
 
 /**
  * 

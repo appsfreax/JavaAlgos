@@ -1,4 +1,4 @@
-package BinaryTree;
+package binaryTree;
 /**
  * This class is used for BinaryTree implementation with Array
  * @author rima.jain

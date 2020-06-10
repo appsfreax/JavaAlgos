@@ -1,9 +1,9 @@
-package BinaryTree;
+package binaryTree;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-import Model.BinaryNode;
+import models.BinaryNode;
 
 public class BinaryTreeByLL {
 	
