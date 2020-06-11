@@ -15,7 +15,8 @@ import models.BinaryNode;
  * 3. Prorder Iterative
  * 4. PostOrder Iterative
  * 5. Reverse level order
- * 6. spriral/zig order
+ * 6. Spriral/zig order
+ * 7. Complete Binary Tree
  * @author rima.jain
  *
  */
