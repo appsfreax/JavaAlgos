@@ -20,7 +20,7 @@ import models.BinaryNode;
  * @author rima.jain
  *
  */
-public class BTQuestionSetOne {
+public class BTAlgorithmsSetOne {
 	
 	static BinaryNode nodeOne = createBinaryTreeOne();
 	static BinaryNode nodeTwo = createBinaryTreeTwo();
