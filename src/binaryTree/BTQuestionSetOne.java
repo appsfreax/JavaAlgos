@@ -11,7 +11,11 @@ import models.BinaryNode;
 /**
  * BT Interview Questions
  * 1. Identical BT
- * 2. 
+ * 2. Height of Tree
+ * 3. Prorder Iterative
+ * 4. PostOrder Iterative
+ * 5. Reverse level order
+ * 6. spriral/zig order
  * @author rima.jain
  *
  */
@@ -26,11 +30,12 @@ public class BTQuestionSetOne {
 			"2.Check two tree are Identical: Iterative\n"+
 			"3.Check three trees are Identical: Recursive\n"+
 			"4.Calculate height of tree: Recursively\n"+
-			"5.Calculate height of tree: Iterartively\n"+
-			"6.Preorder Traversal Iteratively\n"+
+			"5.Calculate height of tree: Iterartive\n"+
+			"6.Preorder Traversal Iterative\n"+
 			"7.PostOrder Traversal Iterative\n"+
 			"8.Reverse Level Order ie Traversal from bottom\n"+
-			"9.Spiral/Zig-zag traversal";
+			"9.Spiral/Zig-zag traversal\n"+
+			"10.Check given binary tree is complete or not";
 
 	public static void main(String[] args) {
 	
@@ -65,19 +70,25 @@ public class BTQuestionSetOne {
 			System.out.println(calculateHeightOfTree(nodeOne));
 			break;
 		case 5:
-			System.out.println(calculateHeightOfTreeIteratively(nodeOne));
+			System.out.println(calculateHeightOfTreeIterative(nodeOne));
 			break;
 		case 6:
-			preOderTraversalIteratively(nodeOne);
+			preOderTraversalIterative(nodeOne);
 			break;
 		case 7:
 			postOrderIterative(nodeOne);
 			break;
 		case 8:
-			reverseLevelOrder(nodeOne);
+			reverseLevelOrder(createBinaryTreeFour());
 			break;
 		case 9:
 			zigzagTraversal(createBinaryTreeFour());
+			break;
+		case 10:
+			if(checkGivenBinaryTreeComplete(completeBinaryTree()))
+				System.out.println("Complete Binary tree");
+			else
+				System.out.println("Not a complete Binary tree");
 			break;
 		}
 
@@ -168,9 +179,9 @@ public class BTQuestionSetOne {
 		return Math.max(calculateHeightOfTree(x.getLeft()), calculateHeightOfTree(x.getRight()))+1;
 	}
 	/*
-	 * Calculate height of Tree: Iteratively
+	 * Calculate height of Tree: Iterative
 	 */
-	public static int calculateHeightOfTreeIteratively(BinaryNode root) {
+	public static int calculateHeightOfTreeIterative(BinaryNode root) {
 			if (root == null) {
 				return 0;
 			}
@@ -196,7 +207,7 @@ public class BTQuestionSetOne {
 	/*
 	 * Preorder Traversal Iterative 
 	 */
-	public static void preOderTraversalIteratively(BinaryNode root) {
+	public static void preOderTraversalIterative(BinaryNode root) {
 		if(root==null) {
 			System.out.println("No items to traverse");
 			return;
@@ -248,10 +259,33 @@ public class BTQuestionSetOne {
 	 * Reverse LevelOrder
 	 */
 	public static void reverseLevelOrder(BinaryNode root) {
-		
+		if(root==null) {
+			System.out.println("No elements to reverse");
+			return;
+		}
+		Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
+		Stack<BinaryNode> stack = new Stack<BinaryNode>();
+		queue.add(root);
+		while(!queue.isEmpty()) {
+			BinaryNode presentNode = new BinaryNode();
+			presentNode = queue.poll();
+			stack.add(presentNode);
+			
+			if(presentNode.getRight()!=null)
+				queue.add(presentNode.getRight());
+			if(presentNode.getLeft()!=null)
+				queue.add(presentNode.getLeft());
+			
+		}
+		while(!stack.isEmpty()) {
+			System.out.println(stack.pop().getValue());
+		}
+			
 			
 	}
-	
+	/*
+	 * Printing zig zag order
+	 */
 	public static void zigzagTraversal(BinaryNode root) {
 		Stack<BinaryNode> stackOne = new Stack<BinaryNode>();
 		Stack<BinaryNode> stackTwo = new Stack<BinaryNode>();
@@ -276,6 +310,33 @@ public class BTQuestionSetOne {
 					stackOne.add(tempNode.getRight());
 			}
 		}
+	}
+	/*
+	 * Check BinaryTree is complete or not
+	 */
+	public static boolean checkGivenBinaryTreeComplete(BinaryNode root) {
+		if(root==null) {
+			System.out.println("No elements");
+			return false;
+		}
+		Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
+		queue.add(root);
+		while(!queue.isEmpty()) {
+			BinaryNode presentNode = new BinaryNode();
+			presentNode = queue.poll();
+			
+			if(presentNode.getLeft()!=null)
+				queue.add(presentNode.getLeft());
+			
+			if(presentNode.getLeft()==null 
+					&& presentNode.getRight()!=null)
+				return false;
+			
+			if(presentNode.getRight()!=null) {
+				queue.add(presentNode.getRight());
+			}	
+		}
+		return true;
 	}
 	
 	
@@ -321,4 +382,15 @@ public class BTQuestionSetOne {
 		return nodeOne;
 	}
 
+	public static BinaryNode completeBinaryTree() {
+		BinaryNode root = new BinaryNode(1);
+		root.left = new BinaryNode(2);
+		root.right = new BinaryNode(3);
+		root.left.left = new BinaryNode(4);
+		root.left.right = new BinaryNode(5);
+		root.right.left = new BinaryNode(6);
+		root.right.right = new BinaryNode(7);
+		return root;
+	}
+	
 }
