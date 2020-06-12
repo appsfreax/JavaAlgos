@@ -92,7 +92,6 @@ public class BTAlgorithmsSetOne {
 				System.out.println("Not a complete Binary tree");
 			break;
 		}
-
 	}
 	/*
 	 * Check two trees are identical: Recursive
@@ -105,9 +104,7 @@ public class BTAlgorithmsSetOne {
 		return ((x!=null && y!=null)&&(x.getValue()==y.getValue())
 				&&isIdenticalRecursive(x.getLeft(), y.getLeft()) 
 				&&(isIdenticalRecursive(x.getRight(), y.getRight())));
-		
 	}
-	
 	/*
 	 * Check two program are identical: Iterative
 	 */
@@ -115,11 +112,9 @@ public class BTAlgorithmsSetOne {
 		if(x==null&& y==null) {
 			return true;
 		}
-		
 		if(x==null || y ==null) {
 			return false;
 		}
-		
 		Queue<BinaryNode> queueOne = new LinkedList<BinaryNode>();
 		Queue<BinaryNode> queueTwo = new LinkedList<BinaryNode>();
 		queueOne.add(x);
@@ -131,8 +126,6 @@ public class BTAlgorithmsSetOne {
 			if(presentNodeOne.getValue()!=presentNodeTwo.getValue()){
 				return false;
 			}
-			
-			
 			if((presentNodeOne.getLeft()!=null)
 					&&(presentNodeTwo.getLeft()!=null)) {
 				queueOne.add(presentNodeOne.getLeft());
@@ -141,7 +134,6 @@ public class BTAlgorithmsSetOne {
 					||presentNodeTwo.getLeft()!=null) {
 				return false;
 			}
-			
 			if((presentNodeOne.getRight()!=null)
 					&&(presentNodeTwo.getRight()!=null)) {
 				queueOne.add(presentNodeOne.getRight());
@@ -152,7 +144,6 @@ public class BTAlgorithmsSetOne {
 			}	
 		}
 		return true;
-		
 	}
 	/*
 	 * To check three trees are identical: Recursive
@@ -161,7 +152,6 @@ public class BTAlgorithmsSetOne {
 		if(x==null && y==null && z==null){
 			return true;
 		}
-		
 		if(x==null||y==null||z==null)
 			return false;
 		
@@ -176,7 +166,6 @@ public class BTAlgorithmsSetOne {
 	public static int calculateHeightOfTree(BinaryNode x) {
 		if(x==null)
 			return 0;
-		
 		return Math.max(calculateHeightOfTree(x.getLeft()), calculateHeightOfTree(x.getRight()))+1;
 	}
 	/*
@@ -186,7 +175,6 @@ public class BTAlgorithmsSetOne {
 			if (root == null) {
 				return 0;
 			}
-			
 			Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
 			queue.add(root);
 			int height=0;
@@ -198,8 +186,7 @@ public class BTAlgorithmsSetOne {
 					if(presentNode.getLeft()!=null)
 						queue.add(presentNode.getLeft());
 					if(presentNode.getRight()!=null)
-						queue.add(presentNode.getRight());
-					
+						queue.add(presentNode.getRight());	
 				}
 				height++;	
 			}
@@ -213,13 +200,11 @@ public class BTAlgorithmsSetOne {
 			System.out.println("No items to traverse");
 			return;
 		}
-		
 		Stack<BinaryNode> stack= new Stack<BinaryNode>();
 		stack.add(root);
 		while(!stack.isEmpty()) {
 			BinaryNode presentNode = stack.pop();
 			System.out.println(presentNode.getValue());
-			
 			if(presentNode.getRight()!=null)
 				stack.add(presentNode.getRight());
 			if(presentNode.getLeft()!=null)
@@ -242,14 +227,11 @@ public class BTAlgorithmsSetOne {
 			BinaryNode presentNode = stackForInput.pop();
 			System.out.println(presentNode.getValue());
 			stackForOutput.push(presentNode);
-			
 			if(presentNode.getRight()!=null)
 				stackForInput.add(presentNode.getRight());
 			if(presentNode.getLeft()!=null)
 				stackForInput.add(presentNode.getLeft());
-		
 		}
-		
 		//For printing the output
 		while(!stackForOutput.isEmpty()) {
 			System.out.println(stackForOutput.pop().getValue());
@@ -271,18 +253,14 @@ public class BTAlgorithmsSetOne {
 			BinaryNode presentNode = new BinaryNode();
 			presentNode = queue.poll();
 			stack.add(presentNode);
-			
 			if(presentNode.getRight()!=null)
 				queue.add(presentNode.getRight());
 			if(presentNode.getLeft()!=null)
 				queue.add(presentNode.getLeft());
-			
 		}
 		while(!stack.isEmpty()) {
 			System.out.println(stack.pop().getValue());
 		}
-			
-			
 	}
 	/*
 	 * Printing zig zag order
@@ -328,11 +306,9 @@ public class BTAlgorithmsSetOne {
 			
 			if(presentNode.getLeft()!=null)
 				queue.add(presentNode.getLeft());
-			
 			if(presentNode.getLeft()==null 
 					&& presentNode.getRight()!=null)
 				return false;
-			
 			if(presentNode.getRight()!=null) {
 				queue.add(presentNode.getRight());
 			}	
@@ -393,5 +369,4 @@ public class BTAlgorithmsSetOne {
 		root.right.right = new BinaryNode(7);
 		return root;
 	}
-	
 }
