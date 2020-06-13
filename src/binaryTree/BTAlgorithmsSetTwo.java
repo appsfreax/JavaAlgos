@@ -1,10 +1,12 @@
 package binaryTree;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Set;
 
 import models.BinaryNode;
 import models.NodeWithHd;
@@ -52,7 +54,7 @@ public class BTAlgorithmsSetTwo {
 			printRightViewOfBinaryTree(createBinaryTreeOne());
 			break;
 		case 3:
-			//Bottomview
+			printBottomViewOfBinaryTree(createBinaryTreeTwo());
 			break;
 		case 4:
 			printTopViewOfBinaryTree(createBinaryTreeTwo());
@@ -65,7 +67,7 @@ public class BTAlgorithmsSetTwo {
 			isTwoNodesCousin(createBinaryTreeOne(),25,8);
 			break;
 		case 7:
-			//TODO
+			//TODO- Anccestors
 			break;
 		case 8:
 			convertBinaryTreeToMirror(createBinaryTreeOne());
@@ -77,7 +79,7 @@ public class BTAlgorithmsSetTwo {
 				System.out.println("Both the trees are not mirror");
 			break;
 		case 10: 
-		
+			//TODO: Root to leaf
 			break;
 		}
 	}
@@ -140,6 +142,27 @@ public class BTAlgorithmsSetTwo {
 	 * To print the bottom view of Binary Tree
 	 */
 	public static void printBottomViewOfBinaryTree(BinaryNode root) {
+		if(root==null) {
+			System.out.println("No elemens");
+			return;
+		}
+		Queue<NodeWithHd> queue = new LinkedList<NodeWithHd>();
+		Hashtable<Integer,BinaryNode> htable = new Hashtable<Integer,BinaryNode>();
+		queue.add(new NodeWithHd(root, 0));
+		while(!queue.isEmpty()) {
+			NodeWithHd presentNode = queue.poll();
+			htable.put( presentNode.getHd(),presentNode.getNode());
+			
+			if(presentNode.getNode().getLeft()!=null)
+				queue.add(new NodeWithHd(presentNode.getNode().getLeft(), presentNode.getHd()-1));
+			
+			if(presentNode.getNode().getRight()!=null)
+				queue.add(new NodeWithHd(presentNode.getNode().getRight(), presentNode.getHd()+1));
+		}
+		Set<Integer> keys = htable.keySet();
+        for(Integer key: keys){
+            System.out.println(htable.get(key));
+        }
 	}
 	
 	/*
@@ -194,7 +217,6 @@ public class BTAlgorithmsSetTwo {
 				size--;
 				
 			}while(size>0);
-			
 		}
 		return null;
 	}
@@ -204,7 +226,6 @@ public class BTAlgorithmsSetTwo {
 	public static boolean isTwoNodesCousin(BinaryNode root,int valueOne,int valueTwo) {
 		return false;
 	}
-	
 	/*
 	 * Converting BT to its Mirror
 	 */
@@ -230,10 +251,8 @@ public class BTAlgorithmsSetTwo {
 	public static boolean isBTsAreMirror(BinaryNode rootOne,BinaryNode rootTwo) {
 		if(rootOne==null && rootTwo==null)
 			return true;
-		
 		if(rootOne==null||rootTwo==null)
 			return false;
-		
 		if(rootOne.getValue()==rootTwo.getValue()) {
 			if(isBTsAreMirror(rootOne.getLeft(), rootTwo.getRight())) {
 				if(isBTsAreMirror(rootOne.getRight(), rootTwo.getLeft()))
@@ -246,7 +265,6 @@ public class BTAlgorithmsSetTwo {
 	 * 
 	 */
 	public static void printNodeToLeaf(BinaryNode root) {
-		
 	}
 	
 	public static BinaryNode createBinaryTreeOne() {
