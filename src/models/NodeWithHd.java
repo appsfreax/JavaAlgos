@@ -1,5 +1,7 @@
 package models;
-
+/*
+ * Node with Hd: This is used for vertical traversing in Tree
+ */
 public class NodeWithHd {
 	
 	
