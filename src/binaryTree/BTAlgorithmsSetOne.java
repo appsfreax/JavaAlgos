@@ -2,6 +2,7 @@ package binaryTree;
 
 import java.util.ArrayDeque;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
@@ -96,8 +97,7 @@ public class BTAlgorithmsSetOne {
 	/*
 	 * Check two trees are identical: Recursive
 	 */
-	private static boolean isIdenticalRecursive(BinaryNode x,BinaryNode y) {
-		
+	private static boolean isIdenticalRecursive(BinaryNode x,BinaryNode y) {	
 		if(x==null&& y==null) {
 			return true;
 		}
